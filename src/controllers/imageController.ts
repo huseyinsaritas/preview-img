@@ -8,12 +8,8 @@ export const imageController = {
     try {
       const poolId = req.params.poolId;
       await dbConnect();
-      const data = await DbImageDataDocument.findOne<ImageData>({ poolId }).exec();
-      return res.status(200).send({
-        success: true,
-        message: "success",
-        data,
-      });
+      const data: ImageData | null = await DbImageDataDocument.findOne<ImageData>({ poolId }).exec();
+      return res.status(200).send(`<img src="${data?.image}" />`);
     } catch (error) {
       console.log("error", error);
       return res.status(501).send({ success: false, message: error, data: undefined });
