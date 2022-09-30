@@ -1,11 +1,7 @@
 import { Schema, model, models, Model } from "mongoose";
+import { ImageData } from "../../model/ImageData";
 
-export interface DbImageData {
-  poolId: string;
-  image: string;
-}
-
-const DbImageDataSchema = new Schema<DbImageData>(
+const DbImageDataSchema = new Schema<ImageData>(
   {
     poolId: { type: String },
     image: { type: String },
@@ -15,4 +11,4 @@ const DbImageDataSchema = new Schema<DbImageData>(
   }
 );
 
-export const DbImageDataDocument = (models.DbImageData as Model<DbImageData, {}, {}, {}>) || model("DbImageData", DbImageDataSchema, "images");
+export const DbImageDataDocument = (models.DbImageData as Model<ImageData, {}, {}>) || model("DbImageData", DbImageDataSchema, "images");
